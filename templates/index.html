@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Audio Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4A00E0;
+        }
+        .upload-box {
+            border: 2px dashed #4A00E0;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .upload-box:hover {
+            background: #eee;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .button {
+            background: #4A00E0;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+        .button:hover {
+            background: #7B00F0;
+        }
+        .hidden {
+            display: none;
+        }
+        .audio-box {
+            margin-top: 20px;
+            text-align: center;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📄 PDF to Audio Converter 🔊</h2>
+
+    <label class="upload-box">
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <i class="fa fa-upload"></i> Select PDF File
+    </label>
+
+    <select id="language">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="hi">Hindi</option>
+    </select>
+
+    <button class="button" onclick="convertPDF()">Convert to Audio 🎵</button>
+
+    <div class="audio-box hidden" id="audioSection">
+        <h3>Audio File 🎧</h3>
+        <audio controls id="audioPlayer">
+            <source src="" type="audio/mpeg">
+        </audio>
+        <a id="downloadBtn" class="button hidden" download>Download Audio 🔽</a>
+    </div>
+</div>
+
+<script>
+    function convertPDF() {
+        const fileInput = document.getElementById("pdfFile");
+        const languageSelect = document.getElementById("language");
+
+        if (!fileInput.files.length) {
+            alert("Please select a PDF file.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("pdf", fileInput.files[0]); // Attach PDF file
+        formData.append("language", languageSelect.value); // Attach selected language
+
+        console.log("Sending request to backend...");
+
+        fetch("http://127.0.0.1:5000/process", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.blob(); // Expect an audio file (MP3)
+        })
+        .then(blob => {
+            console.log("Received audio file from backend.");
+            const audioUrl = URL.createObjectURL(blob);
+            
+            // Show the audio player
+            document.getElementById("audioPlayer").src = audioUrl;
+            document.getElementById("audioPlayer").style.display = "block";
+
+            // Show and set the download button
+            const downloadBtn = document.getElementById("downloadBtn");
+            downloadBtn.href = audioUrl;
+            downloadBtn.classList.remove("hidden");
+
+            // Show the audio section
+            document.getElementById("audioSection").classList.remove("hidden");
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred while processing the PDF.");
+        });
+    }
+</script>
+
+</body>
+</html>
