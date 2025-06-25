@@ -1,4 +1,3 @@
-# Multilingual-PDF-Translator-Audio-Generator
 
 <h1 align="center">🌐 Multilingual PDF Translator & Audio Generator</h1>
 
