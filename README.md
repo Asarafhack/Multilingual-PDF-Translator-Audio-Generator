@@ -67,7 +67,6 @@ This project is a smart, AI-powered **PDF Translator and Text-to-Speech Generato
 
 Follow the instructions based on your operating system to install all dependencies and run the app.
 
----
 
 ### 🪟 For Windows Users
 
@@ -101,9 +100,6 @@ FFMPEG for audio playback (sudo apt install ffmpeg)
 
 📥 Installation Command:
 
-bash
-Copy
-Edit
 git clone https://github.com/Asarafhack/Multilingual-PDF-Translator-Audio-Generator.git
 cd Multilingual-PDF-Translator-Audio-Generator
 python3 -m venv venv
@@ -111,17 +107,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ▶️ To Run:
 
-bash
-Copy
-Edit
+
 python3 app.py           # For CLI version
 streamlit run app.py     # For Web version
+
 🧪 Required Python Libraries
 These are installed automatically from requirements.txt, but here’s what you’re getting:
 
-txt
-Copy
-Edit
 PyPDF2
 googletrans==4.0.0rc1
 gTTS
@@ -129,6 +121,8 @@ pyttsx3
 streamlit
 pdfplumber
 ffmpeg-python
+
+
 🛡️ Optional (for enhancement):
 
 deep-translator
@@ -140,7 +134,5 @@ SpeechRecognition (if adding voice input)
 ✅ Pro Tip:
 If anything fails during TTS on Windows, run:
 
-bash
-Copy
-Edit
+
 pip install pyttsx3 pypiwin32
