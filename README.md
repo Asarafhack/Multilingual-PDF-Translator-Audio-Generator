@@ -60,3 +60,87 @@ This project is a smart, AI-powered **PDF Translator and Text-to-Speech Generato
 🔹 gTTS / pyttsx3 – Text to Speech
 🔹 Flask or Streamlit – Interface
 🔹 FFMPEG – Optional audio enhancements
+
+
+
+## 🛠️ Installation Guide (Windows & Linux)
+
+Follow the instructions based on your operating system to install all dependencies and run the app.
+
+---
+
+### 🪟 For Windows Users
+
+📌 Prerequisites:
+- Python 3.9 or higher 👉 [Download here](https://www.python.org/downloads/windows/)
+- Git CLI 👉 [Git for Windows](https://git-scm.com/download/win)
+- Internet connection for Google Translate API
+
+📥 Installation Command:
+
+```bash
+git clone https://github.com/Asarafhack/Multilingual-PDF-Translator-Audio-Generator.git
+cd Multilingual-PDF-Translator-Audio-Generator
+python -m venv venv
+venv\\Scripts\\activate
+pip install -r requirements.txt
+
+
+python app.py        # For CLI version
+streamlit run app.py # For Web version
+
+
+🐧 For Linux / Ubuntu Users
+📌 Prerequisites:
+
+Python 3.x (sudo apt install python3 python3-pip)
+
+Git (sudo apt install git)
+
+FFMPEG for audio playback (sudo apt install ffmpeg)
+
+📥 Installation Command:
+
+bash
+Copy
+Edit
+git clone https://github.com/Asarafhack/Multilingual-PDF-Translator-Audio-Generator.git
+cd Multilingual-PDF-Translator-Audio-Generator
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+▶️ To Run:
+
+bash
+Copy
+Edit
+python3 app.py           # For CLI version
+streamlit run app.py     # For Web version
+🧪 Required Python Libraries
+These are installed automatically from requirements.txt, but here’s what you’re getting:
+
+txt
+Copy
+Edit
+PyPDF2
+googletrans==4.0.0rc1
+gTTS
+pyttsx3
+streamlit
+pdfplumber
+ffmpeg-python
+🛡️ Optional (for enhancement):
+
+deep-translator
+
+pydub (for advanced audio editing)
+
+SpeechRecognition (if adding voice input)
+
+✅ Pro Tip:
+If anything fails during TTS on Windows, run:
+
+bash
+Copy
+Edit
+pip install pyttsx3 pypiwin32
